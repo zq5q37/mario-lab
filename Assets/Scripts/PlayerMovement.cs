@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject inGameUI;
     public GameObject gameOverUI;
 
+    public Animator marioAnimator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         gameOverUI.SetActive(false);
+        marioAnimator.SetBool("onGround", onGroundState);
     }
 
     // Update is called once per frame
@@ -38,19 +41,27 @@ public class PlayerMovement : MonoBehaviour
         {
             faceRightState = false;
             marioSprite.flipX = true;
+            if (marioBody.linearVelocity.x > 0.1f)
+                marioAnimator.SetTrigger("onSkid");
         }
         if (Input.GetKeyDown("d") && !faceRightState)
         {
             faceRightState = true;
             marioSprite.flipX = false;
+            if (marioBody.linearVelocity.x < -0.1f)
+                marioAnimator.SetTrigger("onSkid");
         }
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground")) onGroundState = true;
+        if (col.gameObject.CompareTag("Ground") && !onGroundState)
+        {
+            onGroundState = true;
+            marioAnimator.SetBool("onGround", onGroundState);
+        }
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -62,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 0.0f;
         }
     }
-
 
     // FixedUpdate is called 50 times a second
     void FixedUpdate()
@@ -88,8 +98,8 @@ public class PlayerMovement : MonoBehaviour
         {
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
+            marioAnimator.SetBool("onGround", onGroundState);
         }
-
     }
 
     public void RestartButtonCallback(int input)
@@ -106,7 +116,9 @@ public class PlayerMovement : MonoBehaviour
         scoreText.text = "Score: 0";
         foreach (Transform eachChild in enemies.transform)
         {
-            eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
+            eachChild.transform.localPosition = eachChild
+                .GetComponent<EnemyMovement>()
+                .startPosition;
         }
         jumpOverGoomba.score = 0;
         inGameUI.SetActive(true);
