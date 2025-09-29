@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gameOverUI;
 
     public Animator marioAnimator;
+    public Transform gameCamera;
+
 
     //Death
     public AudioClip marioDeath;
@@ -93,28 +95,31 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called 50 times a second
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-
-        if (Mathf.Abs(moveHorizontal) > 0)
+        if (alive)
         {
-            Vector2 movement = new Vector2(moveHorizontal, 0);
-            if (marioBody.linearVelocity.magnitude < maxSpeed)
+            float moveHorizontal = Input.GetAxisRaw("Horizontal");
+
+            if (Mathf.Abs(moveHorizontal) > 0)
             {
-                marioBody.AddForce(movement * speed);
+                Vector2 movement = new Vector2(moveHorizontal, 0);
+                if (marioBody.linearVelocity.magnitude < maxSpeed)
+                {
+                    marioBody.AddForce(movement * speed);
+                }
             }
-        }
 
-        // if lift key, stop moving
-        if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
-        {
-            marioBody.linearVelocity = Vector2.zero;
-        }
+            // if lift key, stop moving
+            if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
+            {
+                marioBody.linearVelocity = Vector2.zero;
+            }
 
-        if (Input.GetKeyDown("space") && onGroundState)
-        {
-            marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
-            onGroundState = false;
-            marioAnimator.SetBool("onGround", onGroundState);
+            if (Input.GetKeyDown("space") && onGroundState)
+            {
+                marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
+                onGroundState = false;
+                marioAnimator.SetBool("onGround", onGroundState);
+            }
         }
     }
     // for audio
@@ -155,5 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
+        // reset camera position
+        gameCamera.position = new Vector3(0, 0, -10);
     }
 }
