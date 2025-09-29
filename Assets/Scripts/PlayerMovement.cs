@@ -101,6 +101,14 @@ public class PlayerMovement : MonoBehaviour
             marioAnimator.SetBool("onGround", onGroundState);
         }
     }
+        // for audio
+    public AudioSource marioAudio;
+
+        void PlayJumpSound()
+    {
+        // play jump sound
+        marioAudio.PlayOneShot(marioAudio.clip);
+    }
 
     public void RestartButtonCallback(int input)
     {
