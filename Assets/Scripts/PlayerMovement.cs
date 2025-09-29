@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [System.NonSerialized]
     public bool alive = true;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
