@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gameOverUI;
 
     public Animator marioAnimator;
+    public Transform gameCamera;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -131,5 +133,7 @@ public class PlayerMovement : MonoBehaviour
         jumpOverGoomba.score = 0;
         inGameUI.SetActive(true);
         gameOverUI.SetActive(false);
+        // reset camera position
+        gameCamera.position = new Vector3(0, 0, -10);
     }
 }
