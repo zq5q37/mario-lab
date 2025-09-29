@@ -1704,6 +1704,7 @@ MonoBehaviour:
   jumpOverGoomba: {fileID: 743737875}
   inGameUI: {fileID: 367834108}
   gameOverUI: {fileID: 6073494}
+  marioAnimator: {fileID: 743737876}
 --- !u!114 &743737873
 MonoBehaviour:
   m_ObjectHideFlags: 0
