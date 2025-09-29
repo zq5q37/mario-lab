@@ -1706,6 +1706,8 @@ MonoBehaviour:
   inGameUI: {fileID: 367834108}
   gameOverUI: {fileID: 6073494}
   marioAnimator: {fileID: 743737876}
+  marioDeath: {fileID: 8300000, guid: 2ce3d2cbf8b94504484712f11d0d3312, type: 3}
+  deathImpulse: 15
   marioAudio: {fileID: 743737877}
 --- !u!114 &743737873
 MonoBehaviour:

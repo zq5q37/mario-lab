@@ -23,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator marioAnimator;
 
+    //Death
+    public AudioClip marioDeath;
+    public float deathImpulse = 15;
+    [System.NonSerialized]
+    public bool alive = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
         gameOverUI.SetActive(false);
         marioAnimator.SetBool("onGround", onGroundState);
+        marioSprite.flipX = false;
     }
 
     // Update is called once per frame
@@ -65,13 +72,22 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && alive)
         {
-            gameOverScoreText.text = scoreText.text;
-            inGameUI.SetActive(false);
-            gameOverUI.SetActive(true);
-            Time.timeScale = 0.0f;
+            Debug.Log("Collided with Goomba!");
+
+            marioAnimator.Play("mario-die");
+            marioAudio.PlayOneShot(marioDeath);
+            alive = false;
         }
+    }
+
+    void GameOverScene()
+    {
+        gameOverScoreText.text = scoreText.text;
+        inGameUI.SetActive(false);
+        gameOverUI.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 
     // FixedUpdate is called 50 times a second
@@ -101,13 +117,18 @@ public class PlayerMovement : MonoBehaviour
             marioAnimator.SetBool("onGround", onGroundState);
         }
     }
-        // for audio
+    // for audio
     public AudioSource marioAudio;
 
-        void PlayJumpSound()
+    void PlayJumpSound()
     {
         // play jump sound
         marioAudio.PlayOneShot(marioAudio.clip);
+    }
+
+    void PlayDeathImpulse()
+    {
+        marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
     }
 
     public void RestartButtonCallback(int input)
@@ -131,5 +152,8 @@ public class PlayerMovement : MonoBehaviour
         jumpOverGoomba.score = 0;
         inGameUI.SetActive(true);
         gameOverUI.SetActive(false);
+
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
     }
 }
