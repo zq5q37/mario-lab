@@ -123,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
     // for audio
     public AudioSource marioAudio;
 
@@ -162,6 +163,6 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
         // reset camera position
-        gameCamera.position = new Vector3(0, 0, -10);
+        gameCamera.position = new Vector3(-31.1f, 3.5f, -10);
     }
 }
