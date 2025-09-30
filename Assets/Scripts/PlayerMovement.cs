@@ -24,13 +24,12 @@ public class PlayerMovement : MonoBehaviour
     public Animator marioAnimator;
     public Transform gameCamera;
 
-
     //Death
     public AudioClip marioDeath;
     public float deathImpulse = 15;
+
     [System.NonSerialized]
     public bool alive = true;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,9 +63,16 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
     }
 
+    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
+
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") && !onGroundState)
+        // if (
+        //     col.gameObject.CompareTag("Ground")
+        //     || col.gameObject.CompareTag("Enemies")
+        //     || col.gameObject.CompareTag("Obstacles") && !onGroundState
+        // )
+        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
             marioAnimator.SetBool("onGround", onGroundState);
