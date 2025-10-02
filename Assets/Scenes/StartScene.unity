@@ -532,6 +532,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 578115327}
     m_Modifications:
+    - target: {fileID: 2437525043111057569, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437525043111057569, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437525043111057569, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      propertyPath: m_Constraints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437525043111057569, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2794536599246848934, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.408022
@@ -576,11 +592,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick_brown1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8218945907225393894, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      propertyPath: m_Constraints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218945907225393894, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2794536599246848934, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 652560592}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6823351488000848747, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1474181479}
   m_SourcePrefab: {fileID: 100100000, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+--- !u!1 &348293140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6823351488000848747, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
+  m_PrefabInstance: {fileID: 348293139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &367834108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1211,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2794536599246848934, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
   m_PrefabInstance: {fileID: 1281610561}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &652560591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652560592}
+  m_Layer: 6
+  m_Name: brickcoinspawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &652560592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652560591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1474181478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &670520242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,6 +3464,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2794536599246848934, guid: 80a76832acb07a54f821956a130aeb66, type: 3}
   m_PrefabInstance: {fileID: 348293139}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1474181479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348293140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f988acc229cbe4bba388cee6db43f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickBox
+  brickAnimator: {fileID: 0}
+  coinPrefab: {fileID: 3300298233202744378, guid: f2dac181e17ebf142b5bbe0835b139ef, type: 3}
+  coinSound: {fileID: 8300000, guid: d885ffc842af744d89f7d595ffcc176a, type: 3}
+  coinSpawnPoint: {fileID: 652560592}
 --- !u!1 &1537747292
 GameObject:
   m_ObjectHideFlags: 0
