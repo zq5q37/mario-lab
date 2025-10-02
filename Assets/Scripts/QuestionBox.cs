@@ -12,18 +12,32 @@ public class QuestionBox : MonoBehaviour
     private bool isBouncing = false;
     private SpringJoint2D springJoint;
 
-    // public Rigidbody2D marioBody;
+    private Rigidbody2D rb;
+    private bool hasBounced = false;
 
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     rb.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
+    // }
     void Start()
     {
         originalPos = transform.position;
+        rb = GetComponent<Rigidbody2D>();
         springJoint = GetComponent<SpringJoint2D>();
         // update animator state
         questionBoxAnimator.SetBool("enabled", true);
+        hasBounced = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (hasBounced)
+        {
+            // GetComponent<SpringJoint2D>().enabled = false;
+            // rb.constraints =
+            //     RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            return;
+        }
         // Check if the collision is from Mario/Player
         if (collision.gameObject.CompareTag("Player") && !isBouncing)
         {
@@ -33,15 +47,14 @@ public class QuestionBox : MonoBehaviour
             if (playerRb.linearVelocity.y > 0.1f)
             {
                 questionBoxAnimator.SetBool("enabled", false);
+                hasBounced = true;
             }
-
 
             // If the normal points downward, Mario hit from below
             // Normal vector points away from the surface that was hit
             // if (contact.normal.y < -0.5f) // Hitting from below
             // {
             //     TriggerBounce();
-
 
             // }
             // else if (contact.normal.y > 0.5f) // Mario landing on top
