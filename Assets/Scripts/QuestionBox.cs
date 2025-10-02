@@ -12,6 +12,8 @@ public class QuestionBox : MonoBehaviour
     private bool isBouncing = false;
     private SpringJoint2D springJoint;
 
+    // public Rigidbody2D marioBody;
+
     void Start()
     {
         originalPos = transform.position;
@@ -25,9 +27,14 @@ public class QuestionBox : MonoBehaviour
         // Check if the collision is from Mario/Player
         if (collision.gameObject.CompareTag("Player") && !isBouncing)
         {
+            Rigidbody2D playerRb = collision.collider.GetComponent<Rigidbody2D>();
             // Get the collision normal to determine hit direction
-            ContactPoint2D contact = collision.GetContact(0);
-            questionBoxAnimator.SetBool("enabled", false);
+            // ContactPoint2D contact = collision.GetContact(0);
+            if (playerRb.linearVelocity.y > 0.1f)
+            {
+                questionBoxAnimator.SetBool("enabled", false);
+            }
+
 
             // If the normal points downward, Mario hit from below
             // Normal vector points away from the surface that was hit
