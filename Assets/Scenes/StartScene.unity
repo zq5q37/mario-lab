@@ -688,6 +688,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &502585176 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7728735477942583364, guid: 09af76961550dc649b095bc324c266dd, type: 3}
+  m_PrefabInstance: {fileID: 895151528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,11 +981,6 @@ Transform:
   - {fileID: 1567301773}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &578804095 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5054931099046968852, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-  m_PrefabInstance: {fileID: 312137819103106858}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &587981925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5318396682405204430, guid: 09af76961550dc649b095bc324c266dd, type: 3}
@@ -1452,6 +1452,22 @@ MonoBehaviour:
   gameCamera: {fileID: 519420032}
   marioDeath: {fileID: 8300000, guid: 2ce3d2cbf8b94504484712f11d0d3312, type: 3}
   deathImpulse: 15
+  questionBoxAnimator: {fileID: 502585176}
+  restartEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 565b40a3388c5e44fbf271c829192859, type: 2}
+        m_TargetAssemblyTypeName: SimpleGameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   marioAudio: {fileID: 743737877}
 --- !u!114 &743737873
 MonoBehaviour:
@@ -2130,6 +2146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-spring (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5159676755454692656, guid: 09af76961550dc649b095bc324c266dd, type: 3}
+      propertyPath: m_Name
+      value: question_block (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 5318396682405204430, guid: 09af76961550dc649b095bc324c266dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.405851
@@ -2388,46 +2408,6 @@ Transform:
   - {fileID: 540029426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &948660319 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5159676755454692656, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-  m_PrefabInstance: {fileID: 312137819103106858}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &948660325
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948660319}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 12e6576df6df3f346a36c20e93b6bc56, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &948660326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948660319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c483c3b89c34444596349fc02900ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionBox
-  questionBoxAnimator: {fileID: 948660325}
 --- !u!1001 &991784606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4014,68 +3994,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5318396682405204430, guid: 09af76961550dc649b095bc324c266dd, type: 3}
   m_PrefabInstance: {fileID: 312137819103106858}
   m_PrefabAsset: {fileID: 0}
---- !u!251 &1724952318
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578804095}
-  m_Enabled: 0
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
---- !u!68 &1724952319
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578804095}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.5}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &1749599267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4670,6 +4588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-spring (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5159676755454692656, guid: 09af76961550dc649b095bc324c266dd, type: 3}
+      propertyPath: m_Name
+      value: question_block (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 5318396682405204430, guid: 09af76961550dc649b095bc324c266dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.33385
@@ -4813,29 +4735,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 578115327}
     m_Modifications:
-    - target: {fileID: 1437257480023632723, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300164, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}
-    - target: {fileID: 2550556127947841359, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      propertyPath: questionBoxAnimator
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2797850497440112590, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630090797863397888, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630090797863397888, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5054931099046968852, guid: 09af76961550dc649b095bc324c266dd, type: 3}
       propertyPath: m_Name
       value: Question-spring (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159676755454692656, guid: 09af76961550dc649b095bc324c266dd, type: 3}
+      propertyPath: m_Name
+      value: question_block (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5318396682405204430, guid: 09af76961550dc649b095bc324c266dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4877,23 +4783,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2550556127947841359, guid: 09af76961550dc649b095bc324c266dd, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5054931099046968852, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1724952319}
-    - targetCorrespondingSourceObject: {fileID: 5054931099046968852, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1724952318}
-    - targetCorrespondingSourceObject: {fileID: 5159676755454692656, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 948660326}
-    - targetCorrespondingSourceObject: {fileID: 5159676755454692656, guid: 09af76961550dc649b095bc324c266dd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 948660325}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09af76961550dc649b095bc324c266dd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

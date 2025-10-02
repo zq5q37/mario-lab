@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 7026460476508456265}
   - component: {fileID: 7160493927217077002}
   - component: {fileID: 7728735477942583364}
+  - component: {fileID: 2779737450041700534}
   m_Layer: 6
   m_Name: question_block (3)
   m_TagString: Untagged
@@ -348,3 +349,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2779737450041700534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159676755454692656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb3d168799fcdb40a239fdaf54ad91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 565b40a3388c5e44fbf271c829192859, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7160493927217077002}
+        m_TargetAssemblyTypeName: QuestionBox, Assembly-CSharp
+        m_MethodName: resetBounce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

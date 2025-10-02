@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     [System.NonSerialized]
     public bool alive = true;
 
+    public Animator questionBoxAnimator;
+
+    public UnityEvent<Void> restartEvent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -152,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetGame()
     {
+        restartEvent.Invoke(null);
         marioBody.transform.position = new Vector3(-34.8f, 0.5f, 0.0f);
         faceRightState = true;
         marioSprite.flipX = false;
@@ -170,5 +175,6 @@ public class PlayerMovement : MonoBehaviour
         alive = true;
         // reset camera position
         gameCamera.position = new Vector3(-31.1f, 3.5f, -10);
+        questionBoxAnimator.SetBool("enabled", true);
     }
 }
