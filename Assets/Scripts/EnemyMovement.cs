@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -9,10 +10,16 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 velocity;
 
     private Rigidbody2D enemyBody;
-    public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
+    public Vector3 startPosition = Vector3.zero;
 
     public Animator goombaAnimator;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("Unity Events")]
+    public UnityEvent onDeath; // Assign score, sound, etc. in Inspector
+
+    public AudioSource stompAudio; // assign AudioSource in Inspector
+    public AudioClip stompClip;    // assign AudioClip in Inspector
+
     void Start()
     {
         transform.localPosition = startPosition;
@@ -21,18 +28,16 @@ public class EnemyMovement : MonoBehaviour
         ComputeVelocity();
         goombaAnimator = GetComponent<Animator>();
     }
+
     void ComputeVelocity()
     {
-        velocity = new Vector2((moveRight) * maxOffset / enemyPatroltime, 0);
+        velocity = new Vector2(moveRight * maxOffset / enemyPatroltime, 0);
     }
+
     void Movegoomba()
     {
         enemyBody.MovePosition(enemyBody.position + velocity * Time.fixedDeltaTime);
     }
-
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    // }
 
     void FixedUpdate()
     {
@@ -48,6 +53,39 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    public void StopMovement()
+    {
+        velocity = Vector2.zero;
+
+        if (enemyBody != null)
+            enemyBody.linearVelocity = Vector2.zero;
+
+        var collider = GetComponent<Collider2D>();
+        if (collider != null)
+            collider.enabled = false;
+
+        enabled = false;
+
+        // Invoke UnityEvent to handle score, sound, animation
+        onDeath?.Invoke();
+    }
+
+    public void ResumeMovement()
+    {
+        enabled = true;
+
+        var collider = GetComponent<Collider2D>();
+        if (collider != null)
+            collider.enabled = true;
+
+        if (enemyBody != null)
+            enemyBody.linearVelocity = Vector2.zero;
+
+        moveRight = -1;
+        originalX = transform.position.x;
+        ComputeVelocity();
+    }
+
     public void GameRestart()
     {
         transform.localPosition = startPosition;
@@ -58,54 +96,10 @@ public class EnemyMovement : MonoBehaviour
         ResumeMovement();
     }
 
-    public void StopMovement()
+    public void PlayStompSound()
     {
-        // Stop all horizontal movement
-        velocity = Vector2.zero;
-
-        // Stop physics updates
-        if (enemyBody != null)
-        {
-            enemyBody.linearVelocity = Vector2.zero; // remember: you use linearVelocity
-            // enemyBody.bodyType = RigidbodyType2D.Kinematic;
-        }
-
-        // Disable collider so Mario can pass through
-        var collider = GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            collider.enabled = false;
-        }
-
-        // Optionally, stop updating movement
-        enabled = false;
+        if (stompAudio != null && stompClip != null)
+            stompAudio.PlayOneShot(stompClip);
     }
-
-    public void ResumeMovement()
-    {
-        // Reactivate script
-        enabled = true;
-
-        // Re-enable collider
-        var collider = GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            collider.enabled = true;
-        }
-
-        // Reactivate physics
-        if (enemyBody != null)
-        {
-            // enemyBody.bodyType = RigidbodyType2D.Dynamic;
-            enemyBody.linearVelocity = Vector2.zero;
-        }
-
-        // Recompute movement variables
-        moveRight = -1;
-        originalX = transform.position.x;
-        ComputeVelocity();
-    }
-
-
 
 }

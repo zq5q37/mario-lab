@@ -55,19 +55,6 @@ public class PlayerMovement : MonoBehaviour
     // Put everything that has nothing to do with physics here
     void Update()
     {
-        // if (Input.GetKeyDown("a") && faceRightState)
-        // {
-        //     faceRightState = false;
-        //     marioSprite.flipX = true;
-        //     if (marioBody.linearVelocity.x > 0.1f)
-        //         marioAnimator.SetTrigger("onSkid");
-        // }
-        // if (Input.GetKeyDown("d") && !faceRightState)
-        // {
-        //     faceRightState = true;
-        //     marioSprite.flipX = false;
-        //     if (marioBody.linearVelocity.x < -0.1f)
-        //         marioAnimator.SetTrigger("onSkid");
         // }
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
     }
@@ -96,75 +83,55 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        // if (
-        //     col.gameObject.CompareTag("Ground")
-        //     || col.gameObject.CompareTag("Enemies")
-        //     || col.gameObject.CompareTag("Obstacles") && !onGroundState
-        // )
+
         if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
             marioAnimator.SetBool("onGround", onGroundState);
         }
         if (col.gameObject.CompareTag("toad") && alive)
-    {
-        Debug.Log("Bounced on Toad Cloud!");
-
-
-        AudioSource cloudAudio = col.gameObject.GetComponent<AudioSource>();
-        if (cloudAudio != null)
         {
-            cloudAudio.Play();
+            Debug.Log("Bounced on Toad Cloud!");
+
+
+            AudioSource cloudAudio = col.gameObject.GetComponent<AudioSource>();
+            if (cloudAudio != null)
+            {
+                cloudAudio.Play();
+            }
         }
-    }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy") && alive)
         {
-            // Debug.Log("Collided with Goomba!");
-            float marioBottom = transform.position.y - 0.1f; // small offset for accuracy
+            float marioBottom = transform.position.y - 0.1f;
             float goombaTop = other.transform.position.y + 0.1f;
+
             if (marioBottom > goombaTop)
             {
-                // Mario stomped the Goomba
+                // Stomped
                 var goomba = other.GetComponent<EnemyMovement>();
                 if (goomba != null)
-                    goomba.StopMovement(); //stops motion + collision
+                    goomba.StopMovement(); // UnityEvent will handle score, animation, sound
 
-                var goombaAnimator = other.GetComponent<Animator>();
-                if (goombaAnimator != null)
-                    goombaAnimator.Play("dead");
-
-                gameManager.IncreaseScore(1);
-                // Give Mario a small bounce effect
-                // GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 5f);
+                // Mario bounce
+                marioBody.linearVelocity = new Vector2(0, 5f);
             }
             else
             {
-                // Mario hit the Goomba from the side or bottom
-
+                // Mario hit the Goomba from side or bottom
                 marioAnimator.Play("mario-die");
                 marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
                 alive = false;
             }
-
-        }
-        if (other.gameObject.CompareTag("toad") && alive)
-        {
-            Debug.Log("Collided with toad!");
-
-            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
-            alive = false;
         }
     }
 
     void GameOverScene()
     {
-        // gameOverScoreText.text = scoreText.text;
-        // inGameUI.SetActive(false);
-        // gameOverUI.SetActive(true);
+
         gameManager.GameOver();
         Time.timeScale = 0.0f;
     }
@@ -176,29 +143,7 @@ public class PlayerMovement : MonoBehaviour
         if (alive && moving)
         {
             Move(faceRightState ? 1 : -1);
-            // float moveHorizontal = Input.GetAxisRaw("Horizontal");
 
-            // if (Mathf.Abs(moveHorizontal) > 0)
-            // {
-            //     Vector2 movement = new Vector2(moveHorizontal, 0);
-            //     if (marioBody.linearVelocity.magnitude < maxSpeed)
-            //     {
-            //         marioBody.AddForce(movement * speed);
-            //     }
-            // }
-
-            // // if lift key, stop moving
-            // if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
-            // {
-            //     marioBody.linearVelocity = Vector2.zero;
-            // }
-
-            // if (Input.GetKeyDown("space") && onGroundState)
-            // {
-            //     marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
-            //     onGroundState = false;
-            //     marioAnimator.SetBool("onGround", onGroundState);
-            // }
         }
     }
 
@@ -273,29 +218,6 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    // private void ResetGame()
-    // {
-    //     restartEvent.Invoke(null);
-    //     marioBody.transform.position = new Vector3(-34.8f, 0.5f, 0.0f);
-    //     faceRightState = true;
-    //     marioSprite.flipX = false;
-    //     scoreText.text = "Score: 0";
-    //     foreach (Transform eachChild in enemies.transform)
-    //     {
-    //         eachChild.transform.localPosition = eachChild
-    //             .GetComponent<EnemyMovement>()
-    //             .startPosition;
-    //     }
-    //     jumpOverGoomba.score = 0;
-    //     inGameUI.SetActive(true);
-    //     gameOverUI.SetActive(false);
-
-    //     marioAnimator.SetTrigger("gameRestart");
-    //     alive = true;
-    //     // reset camera position
-    //     gameCamera.position = new Vector3(-31.1f, 3.5f, -10);
-    //     questionBoxAnimator.SetBool("enabled", true);
-    // }
 
     public void GameRestart()
     {

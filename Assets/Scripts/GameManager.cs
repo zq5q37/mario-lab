@@ -30,8 +30,19 @@ public class GameManager : MonoBehaviour
         // reset score
         score = 0;
         SetScore(score);
+        ResetAllQuestionBoxes();
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
+    }
+
+    private void ResetAllQuestionBoxes()
+    {
+        // Find all active question boxes in the scene
+        QuestionBox[] boxes = FindObjectsByType<QuestionBox>(FindObjectsSortMode.None);
+        foreach (var box in boxes)
+        {
+            box.resetBounce();
+        }
     }
 
     public void IncreaseScore(int increment)
