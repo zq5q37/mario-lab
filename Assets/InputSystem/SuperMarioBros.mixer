@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-6425246383496094403
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 36144898236261e48b2ea48628a657ca
+  m_EffectName: Attenuation
+  m_MixLevel: bb85e8ae57e6fa949aa9993065ca8fe9
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-6332433320154937027
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -72,7 +86,8 @@ AudioMixerGroupController:
   m_Name: Enemies
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 308dfe2aebbcd3a47b6e116c5e115f9d
-  m_Children: []
+  m_Children:
+  - {fileID: 1824544678092644518}
   m_Volume: 1c1606a393b375c47b54ef5021d85be3
   m_Pitch: 8b4f88254c9baf24ba978144c28b2f14
   m_Send: 00000000000000000000000000000000
@@ -179,7 +194,7 @@ AudioMixerEffectController:
     m_GUID: 742be28d19a68c543922fdda68225ac2
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
-  m_Bypass: 0
+  m_Bypass: 1
 --- !u!244 &-428437251154190690
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -239,6 +254,7 @@ AudioMixerController:
     - a085898a59770f349bd82c90e34e18b9
     - af84fb772433ef245b12f2e401168841
     - d78ffb1238995b0419bfeb821778b6ea
+    - de29571452096184eae4fb8fa1527604
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -289,7 +305,8 @@ AudioMixerSnapshotController:
   m_SnapshotID: b397521210fb7c24d8fe50d31ff0dd82
   m_FloatValues:
     8bbdb90198b72234b9cacb692af36a0f: 2000
-    1a278ce92dcd3714085d1a84c23bfde2: -80
+    ddb0bed5a8c90f842903eaa214212c73: -71
+    1a278ce92dcd3714085d1a84c23bfde2: 0
     0422a02c131aa6541b139829f8b15d67: 1000
   m_TransitionOverrides: {}
 --- !u!243 &17659451628366874
@@ -358,6 +375,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &1824544678092644518
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Toad
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: de29571452096184eae4fb8fa1527604
+  m_Children: []
+  m_Volume: 2f576cf6b49610049bf81f6445cc3233
+  m_Pitch: f16e3ae4fd1e1ba4f867412a5d0fed1a
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -6425246383496094403}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &2334490848652988024
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

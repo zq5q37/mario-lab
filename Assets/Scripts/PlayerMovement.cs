@@ -106,6 +106,17 @@ public class PlayerMovement : MonoBehaviour
             onGroundState = true;
             marioAnimator.SetBool("onGround", onGroundState);
         }
+        if (col.gameObject.CompareTag("toad") && alive)
+    {
+        Debug.Log("Bounced on Toad Cloud!");
+
+
+        AudioSource cloudAudio = col.gameObject.GetComponent<AudioSource>();
+        if (cloudAudio != null)
+        {
+            cloudAudio.Play();
+        }
+    }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -115,6 +126,13 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Collided with Goomba!");
 
             marioAnimator.Play("mario-die");
+            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+            alive = false;
+        }
+        if (other.gameObject.CompareTag("toad") && alive)
+        {
+            Debug.Log("Collided with toad!");
+
             marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
             alive = false;
         }
