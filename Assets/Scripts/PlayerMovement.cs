@@ -113,10 +113,32 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && alive)
         {
             // Debug.Log("Collided with Goomba!");
+            float marioBottom = transform.position.y - 0.1f; // small offset for accuracy
+            float goombaTop = other.transform.position.y + 0.1f;
+            if (marioBottom > goombaTop)
+            {
+                // Mario stomped the Goomba
+                var goomba = other.GetComponent<EnemyMovement>();
+                if (goomba != null)
+                    goomba.StopMovement(); //stops motion + collision
 
-            marioAnimator.Play("mario-die");
-            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
-            alive = false;
+                var goombaAnimator = other.GetComponent<Animator>();
+                if (goombaAnimator != null)
+                    goombaAnimator.Play("dead");
+
+                gameManager.IncreaseScore(1);
+                // Give Mario a small bounce effect
+                // GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 5f);
+            }
+            else
+            {
+                // Mario hit the Goomba from the side or bottom
+
+                marioAnimator.Play("mario-die");
+                marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+                alive = false;
+            }
+
         }
     }
 

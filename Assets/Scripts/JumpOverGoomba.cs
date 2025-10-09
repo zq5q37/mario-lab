@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class JumpOverGoomba : MonoBehaviour
 {
-    public Transform enemyLocation;
+    private Transform enemyLocation;
     public TextMeshProUGUI scoreText;
     private bool onGroundState;
 
@@ -18,6 +18,7 @@ public class JumpOverGoomba : MonoBehaviour
     public float maxDistance;
     public LayerMask layermask;
     public GameManager gameManager;
+    public Animator goombaAnimator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,7 +48,8 @@ public class JumpOverGoomba : MonoBehaviour
             if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
             {
                 countScoreState = false;
-                gameManager.IncreaseScore(1); //
+                // goombaAnimator.Play("dead");
+                // gameManager.IncreaseScore(1); //
                 // score++;
                 // scoreText.text = "Score: " + score.ToString();
             }

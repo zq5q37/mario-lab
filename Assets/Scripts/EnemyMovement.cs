@@ -10,12 +10,16 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D enemyBody;
     public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
+
+    public Animator goombaAnimator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        transform.localPosition = startPosition;
         enemyBody = GetComponent<Rigidbody2D>();
         originalX = transform.position.x;
         ComputeVelocity();
+        goombaAnimator = GetComponent<Animator>();
     }
     void ComputeVelocity()
     {
@@ -50,6 +54,58 @@ public class EnemyMovement : MonoBehaviour
         originalX = transform.position.x;
         moveRight = -1;
         ComputeVelocity();
+        goombaAnimator.SetTrigger("gameRestart");
+        ResumeMovement();
     }
+
+    public void StopMovement()
+    {
+        // Stop all horizontal movement
+        velocity = Vector2.zero;
+
+        // Stop physics updates
+        if (enemyBody != null)
+        {
+            enemyBody.linearVelocity = Vector2.zero; // remember: you use linearVelocity
+            // enemyBody.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        // Disable collider so Mario can pass through
+        var collider = GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
+        // Optionally, stop updating movement
+        enabled = false;
+    }
+
+    public void ResumeMovement()
+    {
+        // Reactivate script
+        enabled = true;
+
+        // Re-enable collider
+        var collider = GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            collider.enabled = true;
+        }
+
+        // Reactivate physics
+        if (enemyBody != null)
+        {
+            // enemyBody.bodyType = RigidbodyType2D.Dynamic;
+            enemyBody.linearVelocity = Vector2.zero;
+        }
+
+        // Recompute movement variables
+        moveRight = -1;
+        originalX = transform.position.x;
+        ComputeVelocity();
+    }
+
+
 
 }
