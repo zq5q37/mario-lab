@@ -25,13 +25,13 @@ public class HUDManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         scoreText.transform.localPosition = scoreTextPosition[0];
         restartButton.localPosition = restartButtonPosition[0];
-        Debug.Log("Game Start");
+        // Debug.Log("Game Start");
     }
 
     public void SetScore(int score)
     {
         scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
-        Debug.Log("Score: " + score.ToString());
+        // Debug.Log("Score: " + score.ToString());
     }
 
     public void GameOver()
@@ -39,6 +39,6 @@ public class HUDManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         scoreText.transform.localPosition = scoreTextPosition[1];
         restartButton.localPosition = restartButtonPosition[1];
-        Debug.Log("Game Over");
+        // Debug.Log("Game Over");
     }
 }

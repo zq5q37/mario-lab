@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && alive)
         {
-            Debug.Log("Collided with Goomba!");
+            // Debug.Log("Collided with Goomba!");
 
             marioAnimator.Play("mario-die");
             marioAudio.PlayOneShot(marioDeath);

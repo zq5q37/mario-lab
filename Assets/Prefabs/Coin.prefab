@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2911653854237788987}
   - component: {fileID: 4402023245565748478}
   - component: {fileID: -9026741051759115329}
+  - component: {fileID: 4230088467784350936}
   m_Layer: 6
   m_Name: Coin
   m_TagString: Untagged
@@ -128,4 +129,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinPop
   popHeight: 1.5
   popSpeed: 4
-  lifetime: 0.5
+--- !u!114 &4230088467784350936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300298233202744378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7827213f37f1ccc46b9e148f9d4cd1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventIntTool
+  parameter: 1
+  useInt:
+    m_PersistentCalls:
+      m_Calls: []

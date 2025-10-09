@@ -6,6 +6,7 @@ public class BrickBox : MonoBehaviour
     public AudioClip coinSound;         // Sound to play when coin spawns
     public Transform coinSpawnPoint;    // Position above the brick for coin
 
+    private GameManager gameManager;    // Reference to GameManager
 
     private bool hasBounced = false;
     private Rigidbody2D rb;
@@ -15,7 +16,7 @@ public class BrickBox : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -41,20 +42,41 @@ public class BrickBox : MonoBehaviour
 
         hasBounced = true;
 
-    //     if (brickAnimator != null)
-    //         brickAnimator.SetBool("enabled", false);
+        //     if (brickAnimator != null)
+        //         brickAnimator.SetBool("enabled", false);
 
-        
 
-    //     // After short delay, stop bouncing
-    //     Invoke(nameof(DisableBounce), 0.5f);
-     }
+
+        //     // After short delay, stop bouncing
+        //     Invoke(nameof(DisableBounce), 0.5f);
+    }
 
     void SpawnCoin()
     {
         if (coinPrefab != null)
         {
-            Instantiate(coinPrefab, coinSpawnPoint.position, Quaternion.identity);
+            // Instantiate(coinPrefab, coinSpawnPoint.position, Quaternion.identity);
+            // Debug.Log("Brick Spawned Coin");
+
+            // Get AnimationEventIntTool component from the spawned coin
+            // var tool = coin.GetComponent<AnimationEventIntTool>();
+            // if (tool != null)
+            // {
+            //     // Cache GameManager if possible
+            //     if (gameManager == null)
+            //     {
+            //         gameManager = FindAnyObjectByType<GameManager>();
+            //         Debug.Log("I cannot find GameManager");
+            //     }
+
+
+            //     if (gameManager != null)
+            //     {
+            //         tool.useInt.AddListener(gameManager.IncreaseScore);
+            //         Debug.Log("I found GameManager");
+            //     }
+
+            // }
         }
 
         if (coinSound != null)
