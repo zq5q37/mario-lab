@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-    private Vector3[] scoreTextPosition = { new Vector3(-747, 473, 0), new Vector3(-200, 0, 0) };
-    private Vector3[] restartButtonPosition = { new Vector3(844, 455, 0), new Vector3(-50, -200, 0) };
+    private Vector3[] scoreTextPosition = { new Vector3(-830, 470, 0), new Vector3(-200, 0, 0) };
+    private Vector3[] restartButtonPosition = { new Vector3(800, 400, 0), new Vector3(-50, -200, 0) };
 
     public GameObject scoreText;
     public Transform restartButton;

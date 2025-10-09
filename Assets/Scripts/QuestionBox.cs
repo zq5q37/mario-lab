@@ -83,7 +83,9 @@ public class QuestionBox : MonoBehaviour
 
         if (coinSound != null)
         {
-            AudioSource.PlayClipAtPoint(coinSound, transform.position);
+            // AudioSource.PlayClipAtPoint(coinSound, transform.position);
+            // AudioSource.PlayClipAtPoint(coinSound, transform.position, 1f); // max volume
+            AudioSource.PlayClipAtPoint(coinSound, Camera.main.transform.position, 1f);
         }
     }
 
