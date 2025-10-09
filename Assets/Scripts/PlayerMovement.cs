@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform gameCamera;
 
     //Death
-    public AudioClip marioDeath;
+    public AudioSource marioDeathAudio;
     public float deathImpulse = 15;
 
     [System.NonSerialized]
@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             // Debug.Log("Collided with Goomba!");
 
             marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
+            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
             alive = false;
         }
     }
