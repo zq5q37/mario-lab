@@ -239,6 +239,7 @@ MonoBehaviour:
   scoreText: {fileID: 759639304}
   restartButton: {fileID: 851081198}
   gameOverPanel: {fileID: 267763317}
+  gameScore: {fileID: 11400000, guid: c5ce732de6e8e164aae490036d7e1abc, type: 2}
 --- !u!1 &125595929
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +851,7 @@ MonoBehaviour:
   gameOver:
     m_PersistentCalls:
       m_Calls: []
+  gameScore: {fileID: 11400000, guid: c5ce732de6e8e164aae490036d7e1abc, type: 2}
 --- !u!1 &540029425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1468,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: {fileID: 577229736}
   marioAnimator: {fileID: 743737876}
-  gameCamera: {fileID: 519420032}
   marioDeathAudio: {fileID: 743737880}
   questionBoxAnimator: {fileID: 502585176}
   restartEvent:
