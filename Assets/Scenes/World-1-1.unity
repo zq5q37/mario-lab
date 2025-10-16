@@ -215,6 +215,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 267763318}
+  - {fileID: 1781045179}
   - {fileID: 759639305}
   - {fileID: 851081198}
   - {fileID: 486182455}
@@ -238,15 +239,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUDManager
   scoreText: {fileID: 759639304}
+  gameOverText: {fileID: 1781045178}
   restartButton: {fileID: 851081198}
-  gameOverPanel: {fileID: 267763317}
+  Panel: {fileID: 267763317}
   gameScore: {fileID: 11400000, guid: c5ce732de6e8e164aae490036d7e1abc, type: 2}
-  gamePaused:
-    m_PersistentCalls:
-      m_Calls: []
-  gameResumed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &125595929
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +431,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1781045179}
+  m_Children: []
   m_Father: {fileID: 6073498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -726,13 +721,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 527836278}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 527836280}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: TogglePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -988,6 +983,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   gameOver:
+    m_PersistentCalls:
+      m_Calls: []
+  gamePaused:
+    m_PersistentCalls:
+      m_Calls: []
+  gameResumed:
     m_PersistentCalls:
       m_Calls: []
   gameScore: {fileID: 11400000, guid: c5ce732de6e8e164aae490036d7e1abc, type: 2}
@@ -4654,7 +4655,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 267763318}
+  m_Father: {fileID: 6073498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

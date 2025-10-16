@@ -49,7 +49,7 @@ public class HUDManager : Singleton<HUDManager>
     public void GameOver()
     {
         Panel.SetActive(true);
-        gameOverText.SetActive(false);
+        gameOverText.SetActive(true);
         scoreText.transform.localPosition = scoreTextPosition[1];
         restartButton.localPosition = restartButtonPosition[1];
         // Debug.Log("Game Over");
