@@ -11,6 +11,10 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
 
+    public UnityEvent gamePaused;
+    public UnityEvent gameResumed;
+    private bool isPaused = false;
+
     // private int score = 0;
     public IntVariable gameScore;
 
@@ -19,6 +23,7 @@ public class GameManager : Singleton<GameManager>
         gameStart.Invoke();
         Time.timeScale = 1.0f;
         gameScore.Value = 0;
+        isPaused = false;
     }
 
     // Update is called once per frame
@@ -37,6 +42,7 @@ public class GameManager : Singleton<GameManager>
         ResetAllQuestionBoxes();
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
+        isPaused = false;
     }
 
     private void ResetAllQuestionBoxes()
@@ -70,4 +76,31 @@ public class GameManager : Singleton<GameManager>
         gameOver.Invoke();
     }
 
+    public void TogglePause()
+    {
+        if (isPaused)
+            ResumeGame();
+        else
+            PauseGame();
+    }
+
+    public void PauseGame()
+    {
+        if (isPaused) return;
+        isPaused = true;
+        Time.timeScale = 0f; // ⏸ freezes physics + Update()
+        gamePaused?.Invoke();
+        Debug.Log("Game paused");
+    }
+
+    public void ResumeGame()
+    {
+        if (!isPaused) return;
+        isPaused = false;
+        Time.timeScale = 1f; // ▶ resumes game
+        gameResumed?.Invoke();
+        Debug.Log("Game resumed");
+    }
+
+    public bool IsPaused => isPaused;
 }
