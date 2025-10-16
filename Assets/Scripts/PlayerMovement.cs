@@ -23,7 +23,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     // public GameObject gameOverUI;
 
     public Animator marioAnimator;
-    public Transform gameCamera;
+    private Transform gameCamera;
 
     //Death
     public AudioSource marioDeathAudio;
@@ -38,7 +38,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     private bool moving = false;
     private bool jumpedState = false;
-    private GameManager gameManager;
+    // private GameManager gameManager;
 
 
     public GameConstants gameConstants;
@@ -61,8 +61,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
         // gameOverUI.SetActive(false);
         marioAnimator.SetBool("onGround", onGroundState);
         marioSprite.flipX = false;
-        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        // gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         SceneManager.activeSceneChanged += SetStartingPosition;
+        gameCamera = GameObject.FindGameObjectWithTag("MainCamera")?.transform;
     }
 
     public void SetStartingPosition(Scene current, Scene next)
@@ -155,7 +156,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
     void GameOverScene()
     {
 
-        gameManager.GameOver();
+        // gameManager.GameOver();
+        GameManager.instance.GameOver();
         Time.timeScale = 0.0f;
     }
 
@@ -244,6 +246,15 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     public void GameRestart()
     {
+        // Always refresh reference in case the camera was destroyed
+        if (gameCamera == null)
+            gameCamera = GameObject.FindGameObjectWithTag("MainCamera")?.transform;
+
+        if (gameCamera == null)
+        {
+            Debug.LogWarning("GameRestart: MainCamera not found!");
+            return;
+        }
         // reset position
         // marioBody.transform.position = new Vector3(-5.33f, -4.69f, 0.0f);
         marioBody.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
@@ -257,5 +268,13 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
         // reset camera position
         gameCamera.position = new Vector3(5.67f, 3.5f, -10.0f);
+    }
+    public override void Awake()
+    {
+        base.Awake();
+        // gameCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        // other instructions
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(GameRestart);
     }
 }

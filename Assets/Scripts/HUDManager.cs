@@ -41,4 +41,15 @@ public class HUDManager : Singleton<HUDManager>
         restartButton.localPosition = restartButtonPosition[1];
         // Debug.Log("Game Over");
     }
+    public override void Awake()
+    {
+        // Make sure the singleton setup runs
+        base.Awake();
+
+        // Then add your custom initialization
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameOver.AddListener(GameOver);
+        GameManager.instance.gameRestart.AddListener(GameStart);
+        GameManager.instance.scoreChange.AddListener(SetScore);
+    }
 }

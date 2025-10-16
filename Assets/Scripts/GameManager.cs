@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent gameOver;
 
     private int score = 0;
+    public static IntVariable gameScore;
 
     void Start()
     {
