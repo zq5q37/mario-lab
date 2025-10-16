@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10;
-    public float maxSpeed = 20;
-    public float upSpeed = 10;
+    // public float speed = 10;
+    // public float maxSpeed = 20;
+    // public float upSpeed = 10;
     private bool onGroundState = true;
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Death
     public AudioSource marioDeathAudio;
-    public float deathImpulse = 15;
+    // public float deathImpulse = 15;
 
     [System.NonSerialized]
     public bool alive = true;
@@ -38,10 +38,22 @@ public class PlayerMovement : MonoBehaviour
 
     private bool moving = false;
     private bool jumpedState = false;
-    public GameManager gameManager;
+    private GameManager gameManager;
+
+
+    public GameConstants gameConstants;
+    float deathImpulse;
+    float upSpeed;
+    float maxSpeed;
+    float speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Set constants
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+        upSpeed = gameConstants.upSpeed;
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
@@ -223,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // reset position
         // marioBody.transform.position = new Vector3(-5.33f, -4.69f, 0.0f);
-        marioBody.transform.position = new Vector3(-34.8f, 0.5f, 0.0f);
+        marioBody.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
@@ -233,6 +245,6 @@ public class PlayerMovement : MonoBehaviour
         alive = true;
 
         // reset camera position
-        gameCamera.position = new Vector3(-31.1f, 3.5f, -10);
+        gameCamera.position = new Vector3(5.67f, 3.5f, -10.0f);
     }
 }
