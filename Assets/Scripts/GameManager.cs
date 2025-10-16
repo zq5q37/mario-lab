@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     // events
     public UnityEvent gameStart;
@@ -62,4 +62,5 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
         gameOver.Invoke();
     }
+
 }

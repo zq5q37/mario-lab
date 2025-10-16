@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-
-public class PlayerMovement : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     // public float speed = 10;
     // public float maxSpeed = 20;
@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     float upSpeed;
     float maxSpeed;
     float speed;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,6 +62,16 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator.SetBool("onGround", onGroundState);
         marioSprite.flipX = false;
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        SceneManager.activeSceneChanged += SetStartingPosition;
+    }
+
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        if (next.name == "World-1-2")
+        {
+            // change the position accordingly in your World-1-2 case
+            this.transform.position = new Vector3(0, 0.5f, 0.0f);
+        }
     }
 
     // Update is called once per frame
