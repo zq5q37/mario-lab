@@ -1676,8 +1676,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155669056}
-  - component: {fileID: 1155669057}
-  - component: {fileID: 1155669058}
   m_Layer: 8
   m_Name: Castle
   m_TagString: Untagged
@@ -1702,62 +1700,6 @@ Transform:
   - {fileID: 1489638571}
   m_Father: {fileID: 946691031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1155669057
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155669055}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.2727757, y: -2.1218586}
-  - {x: -1.2944126, y: -0.45842636}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1155669058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155669055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86907d9a39ed6e1429ff3bbf33bd37a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextScene
-  nextSceneName: 
 --- !u!4 &1181924093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8936414863720706075, guid: 5baec87d6a3a64a4aa0b9e25abf2fd68, type: 3}

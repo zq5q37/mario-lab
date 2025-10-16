@@ -14,4 +14,10 @@ public class NextScene : MonoBehaviour
             SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single);
         }
     }
+
+    public void goNextScene()
+    {
+        Debug.Log("Change scene!");
+        SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single);
+    }
 }
