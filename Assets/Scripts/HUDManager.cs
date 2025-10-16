@@ -13,6 +13,8 @@ public class HUDManager : Singleton<HUDManager>
 
     public GameObject gameOverPanel;
 
+    public IntVariable gameScore;
+
     // Start is called before the first frame update
     void Start() { }
 
@@ -28,9 +30,9 @@ public class HUDManager : Singleton<HUDManager>
         // Debug.Log("Game Start");
     }
 
-    public void SetScore(int score)
+    public void SetScore(int newScore)
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + newScore.ToString();
         // Debug.Log("Score: " + score.ToString());
     }
 

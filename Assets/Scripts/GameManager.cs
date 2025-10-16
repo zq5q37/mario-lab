@@ -11,13 +11,14 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
 
-    private int score = 0;
-    public static IntVariable gameScore;
+    // private int score = 0;
+    public IntVariable gameScore;
 
     void Start()
     {
         gameStart.Invoke();
         Time.timeScale = 1.0f;
+        gameScore.Value = 0;
     }
 
     // Update is called once per frame
@@ -29,8 +30,10 @@ public class GameManager : Singleton<GameManager>
     public void GameRestart()
     {
         // reset score
-        score = 0;
-        SetScore(score);
+        // score = 0;
+        // SetScore(score);
+        gameScore.Value = 0;
+        SetScore(gameScore.Value);
         ResetAllQuestionBoxes();
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
@@ -48,13 +51,16 @@ public class GameManager : Singleton<GameManager>
 
     public void IncreaseScore(int increment)
     {
-        score += increment;
-        SetScore(score);
+        gameScore.ApplyChange(increment);
+        SetScore(gameScore.Value);
+        // score += increment;
+        // SetScore(score);
     }
 
     public void SetScore(int score)
     {
-        scoreChange.Invoke(score);
+        // scoreChange.Invoke(score);
+        scoreChange.Invoke(gameScore.Value);
     }
 
 
