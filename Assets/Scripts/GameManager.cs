@@ -17,15 +17,14 @@ public class GameManager : Singleton<GameManager>
 
     // private int score = 0;
     public IntVariable gameScore;
-
+    public AudioSource backgroundMusic;
     void Start()
     {
-        gameStart.Invoke();
-        Time.timeScale = 1.0f;
-        gameScore.Value = 0;
+        // gameStart.Invoke();
+        // Time.timeScale = 1.0f;
+        // gameScore.Value = 0;
         isPaused = false;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -88,19 +87,28 @@ public class GameManager : Singleton<GameManager>
     {
         if (isPaused) return;
         isPaused = true;
-        Time.timeScale = 0f; // ⏸ freezes physics + Update()
+        Time.timeScale = 0f;
+
         gamePaused?.Invoke();
         Debug.Log("Game paused");
+
+        if (backgroundMusic != null)
+            backgroundMusic.Pause(); // pause audio
     }
 
     public void ResumeGame()
     {
         if (!isPaused) return;
         isPaused = false;
-        Time.timeScale = 1f; // ▶ resumes game
+        Time.timeScale = 1f;
+
         gameResumed?.Invoke();
         Debug.Log("Game resumed");
+
+        if (backgroundMusic != null)
+            backgroundMusic.UnPause(); // resume audio
     }
+
 
     public bool IsPaused => isPaused;
 }

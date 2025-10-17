@@ -257,7 +257,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         }
         // reset position
         // marioBody.transform.position = new Vector3(-5.33f, -4.69f, 0.0f);
-        marioBody.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
+        marioBody.transform.position = new Vector3(0.0f, 10.0f, 0.0f);
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
@@ -272,9 +272,12 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public override void Awake()
     {
         base.Awake();
+        // SceneManager.sceneLoaded += OnSceneLoaded;
         // gameCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
         // other instructions
         // subscribe to Game Restart event
         GameManager.instance.gameRestart.AddListener(GameRestart);
+        GameManager.instance.gameStart.AddListener(GameRestart);
+
     }
 }

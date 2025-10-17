@@ -20,6 +20,7 @@ public class LoadingScene : MonoBehaviour
 
         // once done, go to next scene
         SceneManager.LoadSceneAsync("World-1-1", LoadSceneMode.Single);
+        GameManager.instance.GameRestart();
     }
 
     public void ReturnToMain()
